@@ -12,7 +12,7 @@ Use the mouse to click the "Start" or "Quit" buttons on the intro screen.
 Use the arrow keys to move the player(Snake) around.
 
 ## Diagrams
-![](Snake_Game/Read_Me/Initial_Diagram.png)
+![](RobertMcNiven/Snake_Game/Read_Me/Initial_Diagram.png)
 
 ## Getting Started
 
