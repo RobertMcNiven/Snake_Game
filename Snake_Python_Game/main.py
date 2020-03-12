@@ -466,6 +466,7 @@ def level_2():
         player_Y += player_Y_change
         enemy_X += enemy_X_change
 
+#creates the rectangles for level 2
         screen.fill((0,0,0))
         rectangles(368, 50, 96, 500, (255,0,0))
         rectangles(268, 248, 300, 96, (255,0,0))
@@ -483,6 +484,7 @@ def level_2():
         player(player_X,player_Y)
         enemy(enemy_X,enemy_Y)
 
+#Writes the text to the second level
         level_2_text_line_1 = pygame.font.Font('freesansbold.ttf', 16)
         level_2_text_line_2 = pygame.font.Font('freesansbold.ttf', 16)
         level_2_text_line_3 = pygame.font.Font('freesansbold.ttf', 16)
@@ -499,7 +501,7 @@ def level_2():
 
         death_count_display()
 
-
+#Sets boundaries for level 2
         if player_Y >= 518 or player_Y <= 50:
             player_X = 400
             player_Y = 500
