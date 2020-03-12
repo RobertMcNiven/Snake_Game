@@ -1,0 +1,29 @@
+player_X = 400
+player_Y = 400
+player_X_change = 0
+player_Y_change = 0
+not_dead = True
+while not_dead:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player_X_change = -0.15
+            if event.key == pygame.K_RIGHT:
+                player_X_change = 0.15
+            if event.key == pygame.K_UP:
+                player_Y_change = -0.15
+            if event.key == pygame.K_DOWN:
+                player_Y_change = 0.15
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
+                player_X_change = 0
+            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                player_Y_change = 0
+    player_X += player_X_change
+    player_Y += player_Y_change
+    screen.fill((0,0,0))
+    player(player_X,player_Y)
+    pygame.display.update()
