@@ -12,28 +12,20 @@ Use the mouse to click the "Start" or "Quit" buttons on the intro screen.
 Use the arrow keys to move the player(Snake) around.
 
 ## Diagrams
-![](RobertMcNiven/Snake_Game/Read_Me/Initial_Diagram.png)
+![](RobertMcNiven/Snake_Game/Initial_Diagram.png)
 
 ## Getting Started
-
+In order to run the game, the pygame library needs to be installed on your machine. Using the Python3 command, in the correct directory,
+run the main.py file, this will start the game loop.
 
 ## Built With
 I built this program with the pygame library in atom.io, a text editor.
 
-## Contributing
-
-
 ## Author
 Robert Malcolm McNiven Jr.
 
-## License
-
-
 ## Acknowledgments
 I would like to thank all the people who tested my game and gave me advice about where the story should go.
-
-## History
-
 
 ## Key Programming Concepts Utilized
 I mainly utilized the Pygame library. Other than that, I created my own functions with infinite while loops for each level.
