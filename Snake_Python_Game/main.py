@@ -81,7 +81,7 @@ def egg(x, y):
 def enemy(x, y):
     screen.blit(enemy_Img, (x, y))
 
-
+#Function that checks if the player  model is coming in contact with the egg model
 def is_colliding_with_egg(egg_X, egg_Y, player_X, player_Y, distance_max):
     distance_egg = math.sqrt(((egg_X - player_X) ** 2) + ((egg_Y - player_Y) ** 2))
     if distance_egg <= distance_max:
@@ -89,7 +89,7 @@ def is_colliding_with_egg(egg_X, egg_Y, player_X, player_Y, distance_max):
     else:
         return False
 
-
+#function that checks if the player model is coming in contact with the enemy model
 def is_colliding_with_enemy(enemy_X, enemy_Y, player_X, player_Y, distance):
     distance_enemy = math.sqrt(((enemy_X - player_X) ** 2) + ((enemy_Y - player_Y) ** 2))
     if distance_enemy <= distance:
@@ -131,7 +131,11 @@ def rectangles(rect_X, rect_Y, rect_W, rect_H, color):
     # it 1 less argument but it makes it easier to use
     pygame.draw.rect(screen, color, [rect_X, rect_Y, rect_W, rect_H])
 
+#initializing the death count variable
 death_count = 0
+#passing the death count variable through the death count display function
+#this allows me to place the counter at a specific point on the screen that will
+#translate to every level
 def death_count_display():
     global death_count
     deaths = pygame.font.Font('freesansbold.ttf', 16)
@@ -221,7 +225,7 @@ def intro_screen():
         # loop.
         pygame.display.update()
 
-
+#Level 3
 def level_3():
     print('level 3')
     player_X = 182
@@ -245,6 +249,8 @@ def level_3():
     egg_Y_3 = enemy_Y_3
     global death_count
     dead = False
+
+#This starts the infinite loop for the level until the player reaches the apple
     while not dead:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -267,6 +273,7 @@ def level_3():
         player_X += player_X_change
         player_Y += player_Y_change
         screen.fill((0,0,0))
+#Drawing all the rectangles and models to the screen
         rectangles(150, 150, 96, 400, (202, 0, 254))
         rectangles(25, 400, 150, 64,(202, 0, 254))
         rectangles(150,54,400,96,(202, 0, 254))
@@ -280,7 +287,7 @@ def level_3():
         enemy(enemy_X_2, enemy_Y_2)
         enemy(enemy_X_3, enemy_Y_3)
 
-
+#Writing the text to the screen for level 3
         level_3_text_line_1 = pygame.font.Font('freesansbold.ttf', 16)
         level_3_text_line_2 = pygame.font.Font('freesansbold.ttf', 16)
         text_surf, text_rect = text_objects("Owls will stop at nothing", level_3_text_line_1, (255,255,255))
@@ -290,8 +297,7 @@ def level_3():
         text_rect.center = (550,450)
         screen.blit(text_surf, text_rect)
 
-
-
+#Setting the boundaries for this level
         if player_Y >= 150 and player_X <= 247:
             if player_Y >= 518:
                 player_X = 182
@@ -364,8 +370,9 @@ def level_3():
                 player_X = 182
                 player_Y = 486
                 death_count += 1
+#each reset is also accompanied by adding 1 to the death count
 
-
+#These next statements set the boundaries for the eggs and also make them move
         egg_X_1 += egg_movement_speed
         egg(egg_X_1, egg_Y_1)
         if egg_X_1 >= 222:
@@ -387,11 +394,13 @@ def level_3():
         if egg_X_3 <= 534:
             egg(enemy_X_3, enemy_Y_3)
 
+#checking if the player is hitting the apple
         apple_collision = is_colliding_with_apple(apple_X, apple_Y, player_X, player_Y, 16)
         if apple_collision:
             print('collide')
             intro_screen()
 
+#Checking if the player is hitting any of the 3 enemies
         enemy_collision_1 = is_colliding_with_enemy(enemy_X_1, enemy_Y_1, player_X, player_Y, 25)
         enemy_collision_2 = is_colliding_with_enemy(enemy_X_2, enemy_Y_2, player_X, player_Y, 25)
         enemy_collision_3 = is_colliding_with_enemy(enemy_X_3, enemy_Y_3, player_X, player_Y, 25)
@@ -401,6 +410,7 @@ def level_3():
             player_Y = 486
             death_count += 1
 
+#Checking to see if the player is hitting any of the eggs
         egg_collision_1 = is_colliding_with_egg(egg_X_1,egg_Y_1,player_X,player_Y, 20)
         egg_collision_2 = is_colliding_with_egg(egg_X_2,egg_Y_2,player_X,player_Y, 20)
         egg_collision_3 = is_colliding_with_egg(egg_X_3,egg_Y_3,player_X,player_Y, 20)
@@ -413,7 +423,7 @@ def level_3():
         pygame.display.update()
 
 
-
+#level 2
 def level_2():
     print('level 2')
     player_X = 400
