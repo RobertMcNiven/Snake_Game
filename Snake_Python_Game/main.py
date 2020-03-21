@@ -131,23 +131,6 @@ def rectangles(rect_X, rect_Y, rect_W, rect_H, color):
     # it 1 less argument but it makes it easier to use
     pygame.draw.rect(screen, color, [rect_X, rect_Y, rect_W, rect_H])
 
-#initializing the death count variable
-death_count = 0
-#passing the death count variable through the death count display function
-#this allows me to place the counter at a specific point on the screen that will
-#translate to every level
-def death_count_display():
-    global death_count
-    deaths = pygame.font.Font('freesansbold.ttf', 16)
-    text_surf, text_rect = text_objects("Deaths: ", deaths, (255,255,255))
-    text_rect.center = (675,500)
-    screen.blit(text_surf, text_rect)
-
-    number_of_deaths = pygame.font.Font('freesansbold.ttf', 16)
-    text_surf, text_rect = text_objects(str(death_count), number_of_deaths, (255,255,255))
-    text_rect.center = (725,500)
-    screen.blit(text_surf, text_rect)
-
 
 # Creating the start button as a function so I can put it on multiple screens
 # i.e. a winning screen, a death screen, amd the intro screen
@@ -247,7 +230,6 @@ def level_3():
     egg_Y_2 = enemy_Y_2 + 16
     egg_X_3 = enemy_X_3 + 8
     egg_Y_3 = enemy_Y_3
-    global death_count
     dead = False
 
 #This starts the infinite loop for the level until the player reaches the apple
@@ -282,7 +264,6 @@ def level_3():
         rectangles(550, 286, 150, 64, (202, 0, 254))
         player(player_X,player_Y)
         apple(apple_X, apple_Y)
-        death_count_display()
         enemy(enemy_X_1, enemy_Y_1)
         enemy(enemy_X_2, enemy_Y_2)
         enemy(enemy_X_3, enemy_Y_3)
@@ -302,75 +283,59 @@ def level_3():
             if player_Y >= 518:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
             if player_X >= 214:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
             if player_Y >= 464:
                 if player_X <= 150:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
             if player_X <= 25:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
             if player_Y <= 464 or player_Y >= 400:
                 if player_X <= 150:
                     if player_Y >= 432:
                         player_X = 182
                         player_Y = 486
-                        death_count += 1
                     if player_Y <= 400:
                         player_X = 182
                         player_Y = 486
-                        death_count += 1
         if player_Y <= 54:
             player_X = 182
             player_Y = 486
-            death_count += 1
         if player_Y <= 150:
             if player_X <= 150 or player_X >= 518:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
             if player_X >= 214 and player_X <= 296:
                 if player_Y >= 118:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
             if player_X >= 328 and player_X <= 422:
                 if player_Y >= 118:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
         if player_X >= 296 and player_X <= 328:
             if player_Y >= 118:
                 if player_X <= 296 or player_X >= 328:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
         if player_Y >= 150 and player_X >= 422:
             if player_X <= 454:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
             if player_Y <= 254:
                 if player_X >= 518:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
             if player_Y >= 254 and player_X >= 518:
                 if player_Y <= 286:
                     player_X = 182
                     player_Y = 486
-                    death_count += 1
             if player_Y >= 318:
                 player_X = 182
                 player_Y = 486
-                death_count += 1
-#each reset is also accompanied by adding 1 to the death count
 
 #These next statements set the boundaries for the eggs and also make them move
         egg_X_1 += egg_movement_speed
@@ -408,7 +373,6 @@ def level_3():
             print('player died')
             player_X = 182
             player_Y = 486
-            death_count += 1
 
 #Checking to see if the player is hitting any of the eggs
         egg_collision_1 = is_colliding_with_egg(egg_X_1,egg_Y_1,player_X,player_Y, 20)
@@ -418,7 +382,6 @@ def level_3():
             print('player died')
             player_X = 182
             player_Y = 486
-            death_count += 1
 
         pygame.display.update()
 
@@ -436,7 +399,6 @@ def level_2():
     #enemy_Y_change = 0
     apple_X = 404
     apple_Y = 82
-    global death_count
     dead = False
     while not dead:
         for event in pygame.event.get():
@@ -480,7 +442,6 @@ def level_2():
             print('player died')
             player_X = 400
             player_Y = 500
-            death_count += 1
         player(player_X,player_Y)
         enemy(enemy_X,enemy_Y)
 
@@ -499,31 +460,22 @@ def level_2():
         screen.blit(text_surf, text_rect)
 
 
-        death_count_display()
 
 #Sets boundaries for level 2
         if player_Y >= 518 or player_Y <= 50:
             player_X = 400
             player_Y = 500
-            death_count += 1
-            print(death_count)
         if player_Y >= 312:
             if player_X <= 368 or player_X >= 432:
                 player_X = 400
                 player_Y = 500
-                death_count += 1
-                print(death_count)
         if player_X >= 536 or player_X <= 268:
             player_X = 400
             player_Y = 500
-            death_count += 1
-            print(death_count)
         if player_X <= 368 or player_X >= 432:
             if player_Y <= 248:
                 player_X = 400
                 player_Y = 500
-                death_count += 1
-                print(death_count)
 
 
         pygame.display.update()
@@ -541,8 +493,6 @@ def level_1():
     # makes the initial player movement 0
     player_X_change = 0
     player_Y_change = 0
-    global death_count
-    death_count = 0
     not_dead = True
     # starts an infinite while loop(explain each part individually)
     while not_dead:
@@ -584,7 +534,6 @@ def level_1():
         # places the apple on the coordinates specified.
         # I made it at the end of the course
         apple(apple_X, apple_Y)
-        death_count_display()
 
 
         level_1_text_line_1 = pygame.font.Font('freesansbold.ttf', 16)
@@ -620,24 +569,16 @@ def level_1():
             if player_X <= 368 or player_X >= 432:
                 player_X = 400
                 player_Y = 450
-                death_count += 1
-                print(death_count)
             if player_Y >= 468:
                 player_X = 400
                 player_Y = 450
-                death_count += 1
-                print(death_count)
         if player_Y <= 200:
             if player_X <= 368 or player_X >= 636:
                 player_X = 400
                 player_Y = 450
-                death_count += 1
-                print(death_count)
             if player_Y < 136:
                 player_X = 400
                 player_Y = 450
-                death_count += 1
-                print(death_count)
         pygame.display.update()
 
 
